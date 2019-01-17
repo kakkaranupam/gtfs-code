@@ -25,31 +25,6 @@ CREATE INDEX trips__trip_id
 CREATE INDEX stop_times__stop_id
     ON stop_times(stop_id)
     USING HASH;
-
--- REST
--- REATE INDEX transfers__stop_ids
---    ON transfers(from_stop_id, to_stop_id)
---    USING HASH;
--- 
--- REATE INDEX transfers__stop_ids_reversed
---    ON transfers(to_stop_id, from_stop_id)
---    USING HASH;
--- 
--- REATE INDEX transfers__route_ids
---    ON transfers(from_route_id, to_route_id)
---    USING HASH;
--- 
--- REATE INDEX transfers__route_ids_reversed
---    ON transfers(to_route_id, from_route_id)
---    USING HASH;
--- 
--- REATE INDEX transfers__trip_ids
---    ON transfers(from_route_id, to_route_id)
---    USING HASH;
--- 
--- REATE INDEX transfers__trip_ids_reversed
---    ON transfers(to_trip_id, from_trip_id)
---    USING HASH;
 	
 -- NEW ONES
 CREATE INDEX stop_times__trip_id
