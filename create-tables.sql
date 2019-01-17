@@ -4,6 +4,8 @@ CREATE SCHEMA gtfs;
 
 USE gtfs;
 
+DROP TABLE IF EXISTS agency;
+
 CREATE TABLE IF NOT EXISTS agency (
     agency_id               VARCHAR(20)     NOT NULL,
     agency_name             VARCHAR(255)    NOT NULL,
@@ -13,6 +15,8 @@ CREATE TABLE IF NOT EXISTS agency (
 
     PRIMARY KEY (agency_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS routes;
 
 CREATE TABLE IF NOT EXISTS routes (
     route_id                INT UNSIGNED    NOT NULL,
@@ -30,6 +34,8 @@ CREATE TABLE IF NOT EXISTS routes (
 
 -- IDX 1 and 2
 
+DROP TABLE IF EXISTS shapes;
+
 CREATE TABLE IF NOT EXISTS shapes (
     shape_id                INT UNSIGNED    NOT NULL,
     shape_pt_sequence       SMALLINT        NOT NULL,
@@ -37,16 +43,20 @@ CREATE TABLE IF NOT EXISTS shapes (
     shape_pt_lon            VARCHAR(20)     NOT NULL,
     shape_dist_traveled     SMALLINT        NOT NULL,
 
-    PRIMARY KEY (shape_id, shape_pt_sequence)
+    PRIMARY KEY (shape_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS calendar_dates;
 
 CREATE TABLE IF NOT EXISTS calendar_dates (
     service_id              INT UNSIGNED    NOT NULL,
     cal_date				VARCHAR(8),
-    exception_type          TINYINT,
+    exception_type          TINYINT
 
-    PRIMARY KEY (service_id, cal_date)
+--  PRIMARY KEY (service_id, cal_date)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS trips;
 
 CREATE TABLE IF NOT EXISTS trips (
     route_id                INT UNSIGNED    NOT NULL,
@@ -63,10 +73,13 @@ CREATE TABLE IF NOT EXISTS trips (
     bikes_allowed           TINYINT,
 	trip_date				VARCHAR(8),
 
-	PRIMARY KEY (route_id, service_id, trip_id)
+--  PRIMARY KEY (route_id, service_id, trip_id)
+	PRIMARY KEY (trip_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- IDX 3, 4, 5
+
+DROP TABLE IF EXISTS stops;
 
 CREATE TABLE IF NOT EXISTS stops (
     stop_id                 VARCHAR(20)     NOT NULL,
@@ -84,6 +97,8 @@ CREATE TABLE IF NOT EXISTS stops (
     PRIMARY KEY (stop_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS stop_times;
+
 CREATE TABLE IF NOT EXISTS stop_times (
     trip_id                 INT UNSIGNED    NOT NULL,
     stop_sequence           SMALLINT        NOT NULL,
@@ -96,12 +111,14 @@ CREATE TABLE IF NOT EXISTS stop_times (
     timepoint               BOOLEAN,
     shape_dist_traveled     DOUBLE,
     fare_units_traveled     DOUBLE,
-	trip_date				VARCHAR(8),
+	trip_date				VARCHAR(8)
 
-    PRIMARY KEY (trip_id, stop_id, stop_sequence, arrival_time, departure_time)
+--  PRIMARY KEY (trip_id, stop_id, stop_sequence, arrival_time, departure_time)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- IDX 6
+
+DROP TABLE IF EXISTS transfers;
 
 CREATE TABLE IF NOT EXISTS transfers (
     from_stop_id            VARCHAR(20)     NOT NULL,
