@@ -132,3 +132,23 @@ CREATE TABLE IF NOT EXISTS transfers (
 
     PRIMARY KEY (from_stop_id, to_stop_id, from_route_id, to_route_id, from_trip_id, to_trip_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS trip_updates;
+
+CREATE TABLE IF NOT EXISTS trip_updates (
+    entity_id 			VARCHAR(30),
+    route_id 			INT UNSIGNED,
+    route_short_name 	VARCHAR(60),
+    route_type 			TINYINT,
+    trip_id 			INT UNSIGNED,
+    direction_id 		BOOLEAN,
+    start_date 			VARCHAR(8),
+    start_time 			VARCHAR(10),
+	stop_sequence 		SMALLINT,
+    stop_id 			VARCHAR(20),
+    arrival_time 		VARCHAR(10),
+    arrival_delay 		SMALLINT,
+    departure_time 		VARCHAR(10),
+    departure_delay 	SMALLINT,
+	fetch_time 			DATETIME
+)  ENGINE=MYISAM DEFAULT CHARSET=UTF8MB4;
