@@ -51,9 +51,9 @@ DROP TABLE IF EXISTS calendar_dates;
 CREATE TABLE IF NOT EXISTS calendar_dates (
     service_id              INT UNSIGNED    NOT NULL,
     cal_date				VARCHAR(8),
-    exception_type          TINYINT
+    exception_type          TINYINT,
 
---  PRIMARY KEY (service_id, cal_date)
+  PRIMARY KEY (service_id, cal_date)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS trips;
@@ -111,9 +111,9 @@ CREATE TABLE IF NOT EXISTS stop_times (
     timepoint               BOOLEAN,
     shape_dist_traveled     DOUBLE,
     fare_units_traveled     DOUBLE,
-	trip_date				VARCHAR(8)
+--	trip_date				VARCHAR(8)
 
---  PRIMARY KEY (trip_id, stop_id, stop_sequence, arrival_time, departure_time)
+  PRIMARY KEY (trip_id, stop_id, stop_sequence, arrival_time, departure_time)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- IDX 6
